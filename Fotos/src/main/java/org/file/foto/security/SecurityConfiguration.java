@@ -62,11 +62,7 @@ public class SecurityConfiguration  extends WebSecurityConfigurerAdapter {
 		//.antMatchers(ServicePath.PUBLIC_ROOT_PATH + ServicePath.ALL).permitAll()
 		.antMatchers(ServicePath.ROOT_PATH + ServicePath.ALL).authenticated()
 		.antMatchers(ServicePath.ALL).permitAll()
-		// Package Authorities.
-		.antMatchers(HttpMethod.GET, ServicePath.PACKAGEE_PATH).hasAnyAuthority(AUTH_USER, AUTH_ADMIN)
-		.antMatchers(HttpMethod.POST, ServicePath.PACKAGEE_PATH).hasAnyAuthority(AUTH_USER, AUTH_ADMIN)
-		.antMatchers(HttpMethod.PUT, ServicePath.PACKAGEE_PATH).hasAnyAuthority(AUTH_USER, AUTH_ADMIN)
-		.antMatchers(HttpMethod.DELETE, ServicePath.PACKAGEE_PATH).hasAnyAuthority(AUTH_USER, AUTH_ADMIN)
+		
 		// User Authorities.
 		.antMatchers(HttpMethod.GET, ServicePath.USER_PATH).hasAnyAuthority(AUTH_ADMIN)
 		.antMatchers(HttpMethod.POST, ServicePath.USER_PATH).hasAnyAuthority(AUTH_ADMIN)
