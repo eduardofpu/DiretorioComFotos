@@ -1,0 +1,16 @@
+<section>
+  <ul class="actions vertical">
+    <li ng-show="!authDetails.authenticated"><a href="#/login" class="button big fit">Login</a></li>
+    <li ng-show="authDetails.authenticated"><a ng-click="logout()" href="#/" class="button big fit">Logout</a></li>
+  </ul>
+</section>
+
+<ul class="links">
+  
+  <li ng-show="hasAnyPermission(['ROLE_ADMIN'])">
+    <a href="#/user">
+      <h3>Users</h3>
+      <p>Users of the system.</p>
+    </a>
+  </li>
+</ul>

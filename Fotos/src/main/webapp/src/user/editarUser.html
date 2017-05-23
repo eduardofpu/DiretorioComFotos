@@ -1,0 +1,138 @@
+
+
+<div>
+  <!--
+  <button  type="button" ng-hide="showEditUser" ng-click="show()"  >
+    New User
+  </button>
+-->
+
+
+  <button ng-hide="showEditUser"  type="button" value="Voltar" onClick="history.go(-1)" class="btn btn-warning">Voltar</button>
+
+
+
+
+
+  <form    ng-submit="Editar(editar)"  ng-hide="!showEditUser"    name="form2">
+
+
+
+               <center>
+                 <div>
+                 <h1> Dados visualizados.</h1>
+                 </div>
+
+                 <div>
+
+                 <font color="#B03060"> <h4 ng-bind="editar.name"></h4></font>
+
+                 </div>
+
+
+                 <div>
+                   <font color="#B03060"><h4 ng-bind="editar.email"></h4></font>
+
+                 </div>
+
+
+                 <div>
+                 <font color="#B03060"><h4 ng-bind="editar.cpf"></h4></font>
+
+                 </div>
+
+
+                 <div ng-repeat="permission in editar.permissions">
+                 <label  ></label>  <font color="#B03060"><h4 > {{ permission.role | formatPermission}}</h4></font>
+
+                 </div>
+
+
+     </center>
+
+
+
+    <div>
+      <label>Name</label>
+      <input type="text" placeholder="Name" ng-model="editar.name" name="name" required>
+    </div>
+    <div ng-show="form2.name.$dirty" >
+            <div  ng-show="form2.name.$error.required" class="alert alert-danger" role="alert">Campo name não pode estar vazio </div>
+
+        </div>
+        <!--maxlength="255"-->
+
+    <div>
+      <label>Email</label>
+      <input type="email" placeholder="Email" ng-model="editar.email"   name="email" require>
+    </div>
+    <div ng-show="form2.email.$dirty" >
+            <div  ng-show="form2.email.$error.required" class="alert alert-danger" role="alert">Campo não pode estar vazio </div>
+
+        </div>
+
+
+          <label>CPF</label>  <font color="#B03060"><h4 ng-bind="editar.cpf"></h4></font>
+
+
+
+    <div>
+      <label>Password</label>
+      <input type="password" placeholder="Password" ng-model="editar.password" minlength="4" maxlength="30" name="password" required>
+    </div>
+    <div ng-show="form2.password.$dirty" >
+            <div  ng-show="form2.password.$error.required" class="alert alert-danger" role="alert">Campo password não pode estar vazio </div>
+
+        </div>
+
+
+    <div>
+      <label>Permissions</label>
+      <div ng-repeat="permission in permissions">
+        <input id="{{permission.role}}" type="checkbox" checklist-model="editar.permissions" checklist-value="permission">
+        <label for="{{permission.role}}">{{permission.role | formatPermission}}</label>
+      </div>
+    </div>
+
+    <button  ng-disabled="form2.$invalid"  type="submit">Ediatar dados</button>
+    <button type="button" ng-click="hide()">Cancel</button>
+
+
+
+
+  </form>
+
+<!---Editar Fim--->
+
+
+
+  <div ng-hide="showEditUser">
+    <br/><h3>Users</h3>
+    <table  >
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>CPF</th>
+          <th>Permissions</th>
+
+          <th>Editar</th>
+          <th>Excluir</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="editar in editars">
+          <td>{{ editar.name }}</td>
+          <td>{{ editar.email }}</td>
+          <td>{{ editar.cpf }}</td>
+          <td>
+            <div ng-repeat="permission in editar.permissions">{{ permission.role | formatPermission}}</div>
+          </td>
+
+          <td><button ng-click="editUser(editar)"  ng-hide="showEditUser" >Edit</button></td>
+          <td><button ng-click="deleteUser(editar)">Delete</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

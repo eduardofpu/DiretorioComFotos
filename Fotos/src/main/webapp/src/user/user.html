@@ -1,0 +1,100 @@
+
+
+
+
+
+
+
+<div>
+  <button  type="button"    ng-hide="showAddEditUser" ng-click="show()" >New User </button>
+
+
+
+  <button  type="button"  ng-hide="showAddEditUser" ng-click="show()" ><a href="#/EditarUser">Alterar Dados</a>  </button>
+
+
+
+
+  <form ng-submit="saveUser(user)" ng-hide="!showAddEditUser" name="form">
+    <div>
+      <label>Name</label>
+      <input type="text" placeholder="Name" ng-model="user.name" name="name" required>
+    </div>
+    <div ng-show="form.name.$dirty" >
+            <div  ng-show="form.name.$error.required" class="alert alert-danger" role="alert">Campo name não pode estar vazio </div>
+
+        </div>
+        <!--maxlength="255"
+
+<button  ng-hide="showAddEditUser" ng-click="show()"><a href="#/EditarUser">Editar Usuários</a></li></button>
+
+      -->
+
+    <div>
+      <label>Email</label>
+      <input type="email" placeholder="Email" ng-model="user.email"   name="email" require>
+    </div>
+    <div ng-show="form.email.$dirty" >
+            <div  ng-show="form.email.$error.required" class="alert alert-danger" role="alert">Campo não pode estar vazio </div>
+
+        </div>
+
+
+
+    <div>
+      <label>Password</label>
+      <input type="password" placeholder="Password" ng-model="user.password" minlength="4" maxlength="30" name="password" required>
+    </div>
+    <div ng-show="form.password.$dirty" >
+            <div  ng-show="form.password.$error.required" class="alert alert-danger" role="alert">Campo password não pode estar vazio </div>
+
+        </div>
+
+
+    <div>
+      <label>Permissions</label>
+      <div ng-repeat="permission in permissions">
+        <input id="{{permission.role}}" type="checkbox" checklist-model="user.permissions" checklist-value="permission">
+        <label for="{{permission.role}}">{{permission.role | formatPermission}}</label>
+      </div>
+    </div>
+
+    <button  ng-disabled="form.$invalid"  type="submit">Save</button>
+    <button type="button" ng-click="hide()">Cancel</button>
+  </form>
+
+
+
+
+
+
+  <div>
+    <br/><h3>Users</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          
+          <th>Permissions</th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="user in users">
+          <td>{{ user.name }}</td>
+          <td>{{ user.email }}</td>
+         
+          <td>
+            <div ng-repeat="permission in user.permissions">{{ permission.role | formatPermission}}</div>
+          </td>
+          <!--
+          <td><button  ng-click="editUser(user)">Edit</button></td>
+          <td><button ng-click="deleteUser(user)">Delete</button></td>
+          -->
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
